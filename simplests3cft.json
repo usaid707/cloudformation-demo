@@ -7,7 +7,7 @@
                 "Tags": [
                     {
                         "Key": "environment",
-                        "Value": "dev"
+                        "Value": "prod"
                     }
                 ]
             }
