@@ -1,34 +1,54 @@
----
-AWSTemplateFormatVersion: '2010-09-09'
-Resources:
-  EC2Instance:
-    Type: 'AWS::EC2::Instance'
-    Properties:
-      ImageId: ami-0aa7d40eeae50c9a9
-      InstanceType: t2.micro
-      KeyName: Jenkins_new
-      NetworkInterfaces:
-        - AssociatePublicIpAddress: true
-          DeviceIndex: 0
-          GroupSet:
-            - !Ref EC2InstanceSecurityGroup
-          SubnetId: !Ref DefaultSubnet
-  EC2InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
-    Properties:
-      GroupDescription: Enable SSH access via port 22
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: '22'
-          ToPort: '22'
-          CidrIp: 0.0.0.0/0
-  DefaultVPC:
-    Type: 'AWS::EC2::VPC'
-    Properties:
-      CidrBlock: 10.0.0.0/16
-  DefaultSubnet:
-    Type: 'AWS::EC2::Subnet'
-    Properties:
-      VpcId: !Ref DefaultVPC
-      CidrBlock: 10.0.0.0/24
-      AvailabilityZone: !Select [0, !GetAZs '']
+{
+  "Description": "Create an EC2 instance by AWS CloudFormation",
+  "Resources": {
+    "SecurityGroupDemoSvrTraffic": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "sgDemoSvr",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0",
+            "Description": "For traffic from Internet"
+          }
+        ],
+        "GroupDescription": "Security Group for demo server",
+        "VpcId": "vpc-06d030e3e6d80b667"
+      }
+    },
+    "EC2InstanceDemoSvr": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "AvailabilityZone": "us-east-1b",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "DeleteOnTermination": "true",
+              "VolumeSize": "8",
+              "VolumeType": "gp2"
+            }
+          }
+        ],
+        "ImageId": "ami-0aa7d40eeae50c9a9",
+        "InstanceType": "t2.micro",
+        "KeyName": "Jenkins_new",
+        "NetworkInterfaces": [
+          {
+            "Description": "Primary network interface",
+            "DeviceIndex": "1",
+            "SubnetId": "subnet-0d409df736842f459",
+            "PrivateIpAddress": "172.31.80.9",
+            "GroupSet": [
+              {
+                "Ref": "SecurityGroupDemoSvrTraffic"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
