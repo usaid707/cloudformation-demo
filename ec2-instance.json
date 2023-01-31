@@ -34,22 +34,8 @@
         ],
         "ImageId": "ami-0aa7d40eeae50c9a9",
         "InstanceType": "t2.micro",
-        "KeyName": "Jenkins_new",
-        "NetworkInterfaces": [
-          {
-            "Description": "Primary network interface",
-            "DeviceIndex": "0",
-            "SubnetId": "subnet-0d409df736842f459",
-            "PrivateIpAddress": "172.31.80.9",
-            "GroupSet": [
-              {
-                "Ref": "SecurityGroupDemoSvrTraffic"
-              }
-            ]
-          }
-        ]
+        "KeyName": "Jenkins_new"
       }
     }
   }
 }
- 
