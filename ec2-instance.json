@@ -1,53 +1,47 @@
 {
-"Description": "Create an EC2 instance by AWS CloudFormation",
-"Resources": {
-"SecurityGroupDemoSvrTraffic": {
-"Type": "AWS::EC2::SecurityGroup",
-"Properties": {
-"GroupName": "sgDemoSvr",
-"SecurityGroupIngress": [
-{
-"IpProtocol": "tcp",
-"FromPort": 22,
-"ToPort": 22,
-"CidrIp": "0.0.0.0/0",
-"Description": "For traffic from Internet"
-}
-],
-"GroupDescription": "Security Group for demo server",
-"VpcId": "vpc-06d030e3e6d80b667"
-},
-"Tags": [
-{
-"Key": "Environment",
-"Value": "Development"
-}
-]
-},
-"EC2InstanceDemoSvr": {
-"Type": "AWS::EC2::Instance",
-"Properties": {
-"AvailabilityZone": "us-east-1b",
-"BlockDeviceMappings": [
-{
-"DeviceName": "/dev/sda1",
-"Ebs": {
-"DeleteOnTermination": "true",
-"VolumeSize": "8",
-"VolumeType": "gp2"
-}
-}
-],
-"ImageId": "ami-0aa7d40eeae50c9a9",
-"InstanceType": "t2.micro",
-"KeyName": "Jenkins_new",
-"Tags": [
-{
-"Key": "Environment",
-"Value": "Development"
-}
-]
-}
-}
-}
+  "Description": "Create an EC2 instance by AWS CloudFormation",
+  "Resources": {
+    "SecurityGroupDemoSvrTraffic": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupName": "sgDemoSvr",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": 22,
+            "ToPort": 22,
+            "CidrIp": "0.0.0.0/0",
+            "Description": "For traffic from Internet"
+          }
+        ],
+        "GroupDescription": "Security Group for demo server",
+        "VpcId": "vpc-06d030e3e6d80b667"
+      }
+    },
+    "EC2InstanceDemoSvr": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "AvailabilityZone": "us-east-1b",
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/sda1",
+            "Ebs": {
+              "DeleteOnTermination": "true",
+              "VolumeSize": "8",
+              "VolumeType": "gp2"
+            }
+          }
+        ],
+        "Tags": [
+          {
+              "Key": "environment",
+              "Value": "prod"
+          }
+      ],
+        "ImageId": "ami-0aa7d40eeae50c9a9",
+        "InstanceType": "t2.micro",
+        "KeyName": "Jenkins_new"
+      }
+    }
+  }
 }
