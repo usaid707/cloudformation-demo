@@ -38,7 +38,7 @@
         "NetworkInterfaces": [
           {
             "Description": "Primary network interface",
-            "DeviceIndex": "1",
+            "DeviceIndex": "0",
             "SubnetId": "subnet-0d409df736842f459",
             "PrivateIpAddress": "172.31.80.9",
             "GroupSet": [
