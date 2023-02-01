@@ -9,12 +9,12 @@ Description: >-
 Parameters:
   KeyName:
     Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
-    Type: 'AWS::EC2::KeyPair::KeyName'
+    Type: 'AWS::EC2::KeyPair::Jenkins_new'
     ConstraintDescription: must be the name of an existing EC2 KeyPair.
   InstanceType:
     Description: WebServer EC2 instance type
     Type: String
-    Default: t2.small
+    Default: t2.micro
     AllowedValues:
       - t1.micro
       - t2.nano
