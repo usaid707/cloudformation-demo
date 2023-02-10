@@ -5,7 +5,8 @@ Resources:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-0aa7d40eeae50c9a9
-      InstanceType: t2.micro
+      InstanceType:
+		    - !Ref InType
       KeyName: Jenkins_new
       SecurityGroups:
         - !Ref MySecurityGroup
