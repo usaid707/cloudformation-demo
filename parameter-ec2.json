@@ -1,7 +1,8 @@
-{
-  "Parameters": {
-    "EC2InstanceType": "t2.micro"
-  }
+"Parameters": {
+    "EC2InstanceType": {
+      "Default": "t2.micro",
+      "Type": "String",
+      "Description": "Codepipeline cloudformation test"
+    }
 }
-
 
