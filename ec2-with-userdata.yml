@@ -1,30 +1,20 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
-
-Parameters:
-  EC2InstanceType:
-    Type: String
-    Default: t2.micro
-    AllowedValues:
-      - t2.micro
-      - t2.small
-      - t2.medium
-    Description: EC2 instance type
-
+Description: A simple EC2 instance template
 Resources:
   EC2Instance:
-    Type: 'AWS::EC2::Instance'
+    Type: AWS::EC2::Instance
     Properties:
-      InstanceType: Ref EC2InstanceType
-      ImageId: ami-0aa7d40eeae50c9a9
+      InstanceType: !Ref EC2InstanceType
+      ImageId: ami-0aa7d40eeae50c9a9 # Amazon Linux 2 LTS
       KeyName: Jenkins_new
       SecurityGroups:
         - !Ref EC2InstanceSecurityGroup
   EC2InstanceSecurityGroup:
-    Type: 'AWS::EC2::SecurityGroup'
+    Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupDescription: Security group for EC2 instance
-      SecurityRules:
+      GroupDescription: Allow SSH access
+      SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 22
           ToPort: 22
