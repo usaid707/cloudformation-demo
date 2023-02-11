@@ -15,7 +15,7 @@ Resources:
   EC2Instance:
     Type: 'AWS::EC2::Instance'
     Properties:
-      InstanceType: !Ref EC2InstanceType
+      InstanceType: Ref EC2InstanceType
       ImageId: ami-0aa7d40eeae50c9a9
       KeyName: Jenkins_new
       SecurityGroups:
