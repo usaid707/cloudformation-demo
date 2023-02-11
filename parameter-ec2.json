@@ -1,13 +1,6 @@
 {
-  "parameters": {
-    "EC2InstanceType": {
-      "Type": "String",
-      "Default": "t2.micro",
-      "AllowedValues": [
-        "t2.micro"
-      ],
-      "Description": "The EC2 instance type to be used for the deployment"
-    }
+  "Parameters": {
+    "EC2InstanceType": "t2.micro"
   }
 }
 
