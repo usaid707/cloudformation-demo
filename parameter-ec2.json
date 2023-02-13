@@ -1,6 +1,5 @@
-[
-  {
-    "ParameterKey": "InstanceTypeParameter",
-    "ParameterValue": "t2.micro"
+{
+  "Parameters" : {
+    "InstanceTypeParameter" : "t2.micro"
   }
-]
+}
