@@ -10,6 +10,7 @@
   "AMIIdParameter" : {
     "Type" : "String",
     "Description" : "Enter AMI ID"
+    "Default" : "ami-0aa7d40eeae50c9a9"
   },
 "Resources" : {
     "myEC2Instance" : {
