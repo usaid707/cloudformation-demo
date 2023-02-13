@@ -10,12 +10,17 @@
   "AMIIdParameter" : {
     "Type" : "String",
     "Description" : "Enter AMI ID"
-    "Default" : "ami-0aa7d40eeae50c9a9"
   },
+  "IAMRoleparameter" : {
+    "Type" : "String",
+    "Description" : "Enter Existing IAM Role"
+  }
+},
 "Resources" : {
     "myEC2Instance" : {
       "Type" : "AWS::EC2::Instance",
       "Properties" : {
+        "IamInstanceProfile" : {"Ref" : "IAMRoleparameter"},
         "ImageId" : { "Ref" : "AMIIdParameter"},
         "InstanceType" : { "Ref" : "InstanceTypeParameter" }
       }
