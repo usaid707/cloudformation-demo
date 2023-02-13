@@ -1,10 +1,6 @@
 ---
 AWSTemplateFormatVersion: '2010-09-09'
 Description: A simple EC2 instance template
-Parameters:
-  EC2InstanceType:
-    Description: instance type
-    Type: String
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
