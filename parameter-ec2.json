@@ -1,3 +1,7 @@
 [
-  "InstanceTypeParameter=t2.micro"
+
+    {
+        "ParameterKey": "EC2InstanceType",
+        "ParameterValue": "t2.micro"
+    }
 ]
