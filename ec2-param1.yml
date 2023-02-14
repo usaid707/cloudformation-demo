@@ -11,6 +11,9 @@ Parameters:
   AMIIdParameter:
     Type: String
     Description: Enter AMI ID
+  PubSubnetID:
+    Type: String
+    Description: Enter Subnet ID
 Description: |
   This stack deploys an Amazon Linux EC2 host
 Resources:
@@ -23,7 +26,7 @@ Resources:
       NetworkInterfaces:
         - GroupSet:
             - !Ref SimpleInstanceSg
-          SubnetId: subnet-0d409df736842f459
+          SubnetId: !Ref PubSubnetID
           AssociatePublicIpAddress: true
           DeviceIndex: '0'
           DeleteOnTermination: true
