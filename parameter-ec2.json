@@ -1,6 +1,7 @@
 {
   "Parameters" : {
     "AMIIdParameter" : "ami-0aa7d40eeae50c9a9",
-    "InstanceTypeParameter" : "t1.micro"
+    "InstanceTypeParameter" : "t1.micro",
+    "PubSubnetID" : "subnet-0d409df736842f459"
   }
 }
