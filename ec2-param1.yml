@@ -1,28 +1,39 @@
-AWSTemplateFormatVersion: '2010-09-09'
-
-Description: >
-    This stack deploys an Amazon Linux EC2 host
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.large
+    Description: 'Enter t2.micro, m1.small, or m1.large. Default is t2.micro.'
+  AMIIdParameter:
+    Type: String
+    Description: Enter AMI ID
+Description: |
+  This stack deploys an Amazon Linux EC2 host
 Resources:
   Ec2Instance:
-    Type: AWS::EC2::Instance
+    Type: 'AWS::EC2::Instance'
     Properties:
       KeyName: Jenkins_new
-      InstanceType: t2.micro
-      ImageId: ami-0aa7d40eeae50c9a9
+      InstanceType: !Ref InstanceTypeParameter
+      ImageId: !Ref AMIIdParameter
       NetworkInterfaces:
-      - GroupSet:
-           - !Ref SimpleInstanceSg
-        SubnetId: subnet-0d409df736842f459
-        AssociatePublicIpAddress: true
-        DeviceIndex: '0'
-        DeleteOnTermination: true
+        - GroupSet:
+            - !Ref SimpleInstanceSg
+          SubnetId: subnet-0d409df736842f459
+          AssociatePublicIpAddress: true
+          DeviceIndex: '0'
+          DeleteOnTermination: true
   SimpleInstanceSg:
-    Type: AWS::EC2::SecurityGroup
+    Type: 'AWS::EC2::SecurityGroup'
     Properties:
       GroupDescription: Enable SSH access via port 22
       VpcId: vpc-06d030e3e6d80b667
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        FromPort: 22
-        ToPort: 22
-        CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
